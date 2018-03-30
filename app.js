@@ -81,7 +81,7 @@ const AddTodo = () => {
           text: input.value,
           id: nextTodoId++
         })
-        input.value = ''
+        input.value = ""
       }}>
         Add Todo
       </button>
