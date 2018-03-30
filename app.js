@@ -2,7 +2,6 @@ import {createStore, combineReducers} from 'redux'
 import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
 
-
 const FilterLink = ({filter, children}) => {
   return(
     <a href='#'
