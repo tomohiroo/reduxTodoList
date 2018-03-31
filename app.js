@@ -2,8 +2,10 @@ import {createStore, combineReducers} from 'redux'
 import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
 
-const FilterLink = ({filter, children, currentFilter, onClick}) => {
-  if(filter === currentFilter) {
+// presantational component と container componentを分ける
+// presantational componentにした
+const Link = ({active, children, onClick}) => {
+  if(active) {
     return(
       <span>{children}</span>
     )
@@ -12,12 +14,35 @@ const FilterLink = ({filter, children, currentFilter, onClick}) => {
     <a href='#'
        onClick={e => {
          e.preventDefault()
-         onClick(filter)
+         onClick()
        }}
     >
       {children}
     </a>
   )
+}
+
+// container component
+class FilterLink extends Component {
+  render(){
+    const props = this.props
+    const state = store.getState()
+    return(
+      <Link
+        active={
+          props.filter === state.visibilityFilter
+        }
+        onClick={() => {
+          store.dispatch({
+            type: 'SET_VISIBILITY_FILTER',
+            filter: props.filter
+          })
+        }}
+      >
+        {props.children}
+      </Link>
+    )
+  }
 }
 
 const todo = (state, action) => {
@@ -113,31 +138,19 @@ const AddTodo = ({onAddClick}) => {
   )
 }
 
-const Footer = ({visibilityFilter, onClick}) => (
+const Footer = () => (
   <p>
     Show:
     {' '}
-    <FilterLink
-      filter='SHOW_ALL'
-      currentFilter={visibilityFilter}
-      onClick={onClick}
-    >
+    <FilterLink filter='SHOW_ALL'>
       All
     </FilterLink>
     {' '}
-    <FilterLink
-       filter='SHOW_ACTIVE'
-       currentFilter={visibilityFilter}
-       onClick={onClick}
-    >
+    <FilterLink filter='SHOW_ACTIVE'>
     Active
     </FilterLink>
     {' '}
-    <FilterLink
-      filter='SHOW_COMPLETED'
-      currentFilter={visibilityFilter}
-      onClick={onClick}
-    >
+    <FilterLink filter='SHOW_COMPLETED'>
       Completed
     </FilterLink>
   </p>
@@ -179,15 +192,7 @@ const TodoApp = ({todos, visibilityFilter}) => (
         })
       }}
     />
-    <Footer
-      onClick={(filter) => {
-        store.dispatch({
-          type: 'SET_VISIBILITY_FILTER',
-          filter
-        })
-      }}
-      visibilityFilter={visibilityFilter}
-    />
+    <Footer />
   </div>
 )
 
