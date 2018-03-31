@@ -68,27 +68,6 @@ const todoApp = combineReducers({
 
 const store = createStore(todoApp)
 
-const AddTodo = () => {
-  let input
-  return(
-    <div>
-      <input ref={node => {
-        input = node
-      }}/>
-      <button onClick={() => {
-        store.dispatch({
-          type: 'ADD_TODO',
-          text: input.value,
-          id: nextTodoId++
-        })
-        input.value = ""
-      }}>
-        Add Todo
-      </button>
-    </div>
-  )
-}
-
 const getVisibleTodos = (todos, filter) => {
   switch (filter) {
     case 'SHOW_ALL':
@@ -113,8 +92,20 @@ class TodoApp extends Component {
       this.props.visibilityFilter
     )
     return (
-      <AddTodo />
       <div>
+        <input ref={node => {
+          this.input = node
+        }}/>
+        <button onClick={() => {
+          store.dispatch({
+            type: 'ADD_TODO',
+            text: this.input.value,
+            id: nextTodoId++
+          })
+          this.input.value = ''
+        }}>
+          Add Todo
+        </button>
         <ul>
           {visibleTodos.map(todo =>
             <li key={todo.id}
@@ -138,7 +129,7 @@ class TodoApp extends Component {
         <p>
           Show:
           {' '}
-          <FilterLink filter='SHOW_ALL' children='All'>All</FilterLink>
+          <FilterLink filter='SHOW_ALL'>All</FilterLink>
           {' '}
           <FilterLink filter='SHOW_ACTIVE'>Active</FilterLink>
           {' '}
