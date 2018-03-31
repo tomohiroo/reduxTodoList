@@ -170,10 +170,6 @@ const getVisibleTodos = (todos, filter) => {
 
 let nextTodoId = 0
 const TodoApp = ({todos, visibilityFilter}) => {
-  const visibleTodos = getVisibleTodos (
-    todos,
-    visibilityFilter
-  )
   return (
     <div>
       <AddTodo
@@ -186,7 +182,7 @@ const TodoApp = ({todos, visibilityFilter}) => {
         }}
       />
       <TodoList
-        todos={visibleTodos}
+        todos={getVisibleTodos(todos, visibilityFilter)}
         onTodoClick={id => {
           store.dispatch({
             type: 'TOGGLE_TODO',
