@@ -24,6 +24,15 @@ const Link = ({active, children, onClick}) => {
 
 // container component
 class FilterLink extends Component {
+  componentDidMount(){
+    this.unsubscribe = store.subscribe(() =>
+    //強制的にrenderする
+      this.forceUpdate()
+    )
+  }
+  componentWillUnmount(){
+    this.unsubscribe()
+  }
   render(){
     const props = this.props
     const state = store.getState()
