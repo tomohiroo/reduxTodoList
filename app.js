@@ -2,8 +2,8 @@ import {createStore, combineReducers} from 'redux'
 import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
 
-// presantational component と container componentを分ける
-// presantational componentにした
+// presentational component と container componentを分ける
+// presentational componentにした
 const Link = ({active, children, onClick}) => {
   if(active) {
     return(
@@ -24,6 +24,7 @@ const Link = ({active, children, onClick}) => {
 
 // container component
 class FilterLink extends Component {
+  //mount, unmountの時(LinkのonClick時)にstateを強制的に更新する
   componentDidMount(){
     this.unsubscribe = store.subscribe(() =>
     //強制的にrenderする
