@@ -224,6 +224,7 @@ const TodoApp = () => (
   </div>
 )
 
+//最初の一度しか呼ばれない
 ReactDOM.render(
   <TodoApp />,
   document.getElementById('root')
