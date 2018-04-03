@@ -1,6 +1,7 @@
 import {createStore, combineReducers} from 'redux'
 import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
+import PropTypes from 'prop-types';
 
 // presentational component と container componentを分ける
 // presentational componentにした
@@ -25,6 +26,7 @@ const Link = ({active, children, onClick}) => {
 // container component
 class FilterLink extends Component {
   componentDidMount(){
+    const {store} = this.context
     // returnでunmount用の関数が返ってくる
     this.unsubscribe = store.subscribe(() =>
     //このコンポーネントにprop / stateが来てないのでreactがスキップする
@@ -37,6 +39,7 @@ class FilterLink extends Component {
   }
   render(){
     const props = this.props
+    const {store} = this.context
     const state = store.getState()
     return(
       <Link
@@ -54,6 +57,9 @@ class FilterLink extends Component {
       </Link>
     )
   }
+}
+FilterLink.contextTypes = {
+  store: PropTypes.object
 }
 
 const todo = (state, action) => {
@@ -104,8 +110,6 @@ const todoApp = combineReducers({
   visibilityFilter
 })
 
-const store = createStore(todoApp)
-
 const Todo = ({onClick, completed, text}) => (
   <li
     onClick={onClick}
@@ -133,7 +137,7 @@ const TodoList = ({todos, onTodoClick}) => (
 )
 
 //dispatch以外にcontainer的な要素がないから、presantionalの中にdispatch入れておk
-const AddTodo = () => {
+const AddTodo = (props, {store}) => { //第二引数がcontextになる
   let input
   return(
     <div>
@@ -154,6 +158,9 @@ const AddTodo = () => {
       </button>
     </div>
   )
+}
+AddTodo.contextTypes = {
+  store: PropTypes.object
 }
 
 const Footer = () => (
@@ -192,6 +199,7 @@ const getVisibleTodos = (todos, filter) => {
 //container component
 class VisibleTodoList extends Component{
   componentDidMount(){
+    const {store}= this.context
     this.unsubscribe = store.subscribe(() =>
       this.forceUpdate()
     )
@@ -200,7 +208,7 @@ class VisibleTodoList extends Component{
     this.unsubscribe()
   }
   render(){
-    const props = this.props
+    const {store} = this.context
     const state = store.getState()
     return(
       <TodoList
@@ -215,20 +223,41 @@ class VisibleTodoList extends Component{
     )
   }
 }
+VisibleTodoList.contextTypes = {
+  store: PropTypes.object
+}
 
 let nextTodoId = 0
 const TodoApp = () => (
   <div>
     <AddTodo />
-  <VisibleTodoList />
+    <VisibleTodoList />
     <Footer />
   </div>
 )
+
+//childrenのどこからでもthis.contextで参照できる
+class Provider extends Component {
+  getChildContext(){
+    return{
+      store: this.props.store
+    }
+  }
+  render(){
+    return this.props.children
+  }
+}
+//context使ったcompentで必須
+Provider.childContextTypes = {
+  store: PropTypes.object
+}
 
 //最初の一度しか呼ばれない
 //コードの見通しがききやすい時にpresantional componentをわける
 // さらに、propsをわたしまくってるcomponentがあったらcontainer componentを分けてみる
 ReactDOM.render(
-  <TodoApp />,
+  <Provider store={createStore(todoApp)}>
+    <TodoApp />
+  </Provider>,
   document.getElementById('root')
 )
