@@ -24,9 +24,10 @@ const Link = ({active, children, onClick}) => {
 
 // container component
 class FilterLink extends Component {
-  //mount, unmountの時(LinkのonClick時)にstateを強制的に更新する
   componentDidMount(){
+    // returnでunmount用の関数が返ってくる
     this.unsubscribe = store.subscribe(() =>
+    //このコンポーネントにprop / stateが来てないのでreactがスキップする
     //強制的にrenderする
       this.forceUpdate()
     )
