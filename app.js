@@ -132,6 +132,7 @@ const TodoList = ({todos, onTodoClick}) => (
   </ul>
 )
 
+//dispatch以外にcontainer的な要素がないから、presantionalの中にdispatch入れておk
 const AddTodo = () => {
   let input
   return(
@@ -225,6 +226,8 @@ const TodoApp = () => (
 )
 
 //最初の一度しか呼ばれない
+//コードの見通しがききやすい時にpresantional componentをわける
+// さらに、propsをわたしまくってるcomponentがあったらcontainer componentを分けてみる
 ReactDOM.render(
   <TodoApp />,
   document.getElementById('root')
