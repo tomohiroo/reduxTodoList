@@ -197,6 +197,7 @@ const getVisibleTodos = (todos, filter) => {
   }
 }
 
+//selector func
 const mapStateToProps = (state) => {
   return{
     todos: getVisibleTodos(state.todos, state.visibilityFilter)
@@ -213,35 +214,14 @@ const mapDipatchToProps = (dispatch) => {
   }
 }
 const VisibleTodoList = connect(
+  //この順番固定
+  //どちらの関数にもpropsをreturnさせるが、
+  //１個目の引数にはstate、２個目の引数にはdispatchが自動で入り、
+  //それぞれstate / dispatchをpropsとして渡す
+  //さらにconnectするとsubscribe / unsubscribeを全部やってくれる
   mapStateToProps,
   mapDipatchToProps
 )(TodoList)
-//
-// //container component
-// class VisibleTodoList extends Component{
-//   componentDidMount(){
-//     const {store}= this.context
-//     this.unsubscribe = store.subscribe(() =>
-//       this.forceUpdate()
-//     )
-//   }
-//   componentWillUnmount(){
-//     this.unsubscribe()
-//   }
-//   render(){
-//     const {store} = this.context
-//     const state = store.getState()
-//     return(
-//       <TodoList
-//         todos={}
-//         onTodoClick={}
-//       />
-//     )
-//   }
-// }
-// VisibleTodoList.contextTypes = {
-//   store: PropTypes.object
-// }
 
 let nextTodoId = 0
 const TodoApp = () => (
