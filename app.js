@@ -1,3 +1,4 @@
+import {Provider} from 'react-redux'
 import {createStore, combineReducers} from 'redux'
 import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
@@ -237,20 +238,20 @@ const TodoApp = () => (
 )
 
 //childrenのどこからでもthis.contextで参照できる
-class Provider extends Component {
-  getChildContext(){
-    return{
-      store: this.props.store
-    }
-  }
-  render(){
-    return this.props.children
-  }
-}
-//context使ったcompentで必須
-Provider.childContextTypes = {
-  store: PropTypes.object
-}
+// class Provider extends Component {
+//   getChildContext(){
+//     return{
+//       store: this.props.store
+//     }
+//   }
+//   render(){
+//     return this.props.children
+//   }
+// }
+// //context使ったcompentで必須
+// Provider.childContextTypes = {
+//   store: PropTypes.object
+// }
 
 //最初の一度しか呼ばれない
 //コードの見通しがききやすい時にpresantional componentをわける
