@@ -23,45 +23,27 @@ const Link = ({active, children, onClick}) => {
     </a>
   )
 }
-
-// container component
-class FilterLink extends Component {
-  componentDidMount(){
-    const {store} = this.context
-    // returnでunmount用の関数が返ってくる
-    this.unsubscribe = store.subscribe(() =>
-    //このコンポーネントにprop / stateが来てないのでreactがスキップする
-    //強制的にrenderする
-      this.forceUpdate()
-    )
-  }
-  componentWillUnmount(){
-    this.unsubscribe()
-  }
-  render(){
-    const props = this.props
-    const {store} = this.context
-    const state = store.getState()
-    return(
-      <Link
-        active={
-          props.filter === state.visibilityFilter
-        }
-        onClick={() => {
-          store.dispatch({
-            type: 'SET_VISIBILITY_FILTER',
-            filter: props.filter
-          })
-        }}
-      >
-        {props.children}
-      </Link>
-    )
+//第二引数にpropsがくる
+const mapStateToLinkProps = (state, ownProps) => {
+  return{
+    active: ownProps.filter === state.visibilityFilter
   }
 }
-FilterLink.contextTypes = {
-  store: PropTypes.object
+//これも第二引数はprops
+const mapDipatchToLinkProps = (dispatch, ownProps) => {
+  return{
+    onClick: () => {
+      dispatch({
+        type: 'SET_VISIBILITY_FILTER',
+        filter: ownProps.filter
+      })
+    }
+  }
 }
+const FilterLink = connect(
+  mapStateToLinkProps,
+  mapDipatchToLinkProps
+)(Link)
 
 const todo = (state, action) => {
   switch (action.type) {
