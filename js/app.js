@@ -14,10 +14,6 @@ const TodoApp = () => (
     <Footer />
   </div>
 )
-//最初の一度しか呼ばれない
-//コードの見通しがききやすい時にpresantional componentをわける
-// さらに、propsをわたしまくってるcomponentがあったらcontainer componentを分けてみる
-//childrenのどこからでもthis.contextで参照できる
 ReactDOM.render(
   <Provider store={createStore(todoApp)}>
     <TodoApp />

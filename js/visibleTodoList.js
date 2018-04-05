@@ -12,8 +12,7 @@ const Todo = ({onClick, completed, text}) => (
     onClick={onClick}
     style={{
       textDecoration:
-        completed ?
-          'line-through': 'none',
+        completed ? 'line-through': 'none',
       cursor: 'pointer'
     }}
   >
@@ -57,6 +56,7 @@ const mapDipatchToTodoListProps = (dispatch) => {
     }
   }
 }
+//propsをマージしてTodoListに渡す
 const VisibleTodoList = connect(
   //この順番固定
   //どちらの関数にもpropsをreturnさせるが、
