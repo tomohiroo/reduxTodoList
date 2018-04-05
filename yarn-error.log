@@ -1,8 +1,8 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js add -
+  /usr/local/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js add todo.js
 
 PATH: 
-  /Users/uedatomohiro/.rbenv/bin:/Users/uedatomohiro/.pyenv/shims:/Users/uedatomohiro/.rbenv/bin:/Users/uedatomohiro/.rbenv/bin:/Users/uedatomohiro/.rbenv/shims:/Users/uedatomohiro/.rbenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+  /Users/uedatomohiro/Desktop/webstudy/react/redux/redux-todo-list/node_modules/.bin:/Users/uedatomohiro/.config/yarn/link/node_modules/.bin:/Users/uedatomohiro/Desktop/webstudy/react/redux/redux-todo-list/node_modules/.bin:/Users/uedatomohiro/.config/yarn/link/node_modules/.bin:/usr/local/libexec/lib/node_modules/npm/bin/node-gyp-bin:/usr/local/lib/node_modules/npm/bin/node-gyp-bin:/usr/local/bin/node_modules/npm/bin/node-gyp-bin:/Users/uedatomohiro/.rbenv/bin:/Users/uedatomohiro/.pyenv/shims:/Users/uedatomohiro/.rbenv/bin:/Users/uedatomohiro/.rbenv/bin:/Users/uedatomohiro/.rbenv/shims:/Users/uedatomohiro/.rbenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 
 Yarn version: 
   1.5.1
@@ -206,8 +206,8 @@ Lockfile:
       postcss-value-parser "^3.2.3"
   
   aws-sdk@0.9.x:
-    version "2.220.1"
-    resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.220.1.tgz#7b56a253309c1f741693b3cba639310dcea22240"
+    version "2.221.1"
+    resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.221.1.tgz#437b6a4a0c9ce74fdd10c16d97b5247ff9c2cd35"
     dependencies:
       buffer "4.9.1"
       events "1.1.1"
@@ -4446,11 +4446,11 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/xtend/-/xtend-4.0.1.tgz#a5c6d532be656e23db820efb943a1f04998d63af"
 
 Trace: 
-  Error: Couldn't find package "-" on the "npm" registry.
+  Error: Couldn't find package "aws-sdk@0.9.x" required by "parcel@^0.0.1" on the "npm" registry.
       at new MessageError (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:186:110)
-      at NpmResolver.<anonymous> (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:51625:15)
-      at Generator.next (<anonymous>)
+      at PackageRequest.<anonymous> (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:36274:17)
+      at Generator.throw (<anonymous>)
       at step (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:98:30)
-      at /usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:109:13
+      at /usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:111:13
       at <anonymous>
       at process._tickCallback (internal/process/next_tick.js:188:7)
