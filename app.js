@@ -137,8 +137,7 @@ const TodoList = ({todos, onTodoClick}) => (
   </ul>
 )
 
-//dispatch以外にcontainer的な要素がないから、presantionalの中にdispatch入れておk
-const AddTodo = (props, {store}) => { //第二引数がcontextになる
+let AddTodo = ({dispatch}) => {
   let input
   return(
     <div>
@@ -147,7 +146,7 @@ const AddTodo = (props, {store}) => { //第二引数がcontextになる
       }} />
       <button
         onClick={() => {
-          store.dispatch({
+          dispatch({
             type: 'ADD_TODO',
             text: input.value,
             id: nextTodoId++
@@ -160,9 +159,7 @@ const AddTodo = (props, {store}) => { //第二引数がcontextになる
     </div>
   )
 }
-AddTodo.contextTypes = {
-  store: PropTypes.object
-}
+AddTodo = connect()(AddTodo)
 
 const Footer = () => (
   <p>
@@ -198,12 +195,12 @@ const getVisibleTodos = (todos, filter) => {
 }
 
 //selector func
-const mapStateToProps = (state) => {
+const mapStateToTodoListProps = (state) => {
   return{
     todos: getVisibleTodos(state.todos, state.visibilityFilter)
   }
 }
-const mapDipatchToProps = (dispatch) => {
+const mapDipatchToTodoListProps = (dispatch) => {
   return {
     onTodoClick: id => {
       dispatch({
@@ -219,8 +216,8 @@ const VisibleTodoList = connect(
   //１個目の引数にはstate、２個目の引数にはdispatchが自動で入り、
   //それぞれstate / dispatchをpropsとして渡す
   //さらにconnectするとsubscribe / unsubscribeを全部やってくれる
-  mapStateToProps,
-  mapDipatchToProps
+  mapStateToTodoListProps,
+  mapDipatchToTodoListProps
 )(TodoList)
 
 let nextTodoId = 0
