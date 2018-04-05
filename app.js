@@ -4,8 +4,27 @@ import {createStore, combineReducers} from 'redux'
 import PropTypes from 'prop-types'
 import {Provider, connect} from 'react-redux'
 
-// presentational component と container componentを分ける
-// presentational componentにした
+let nextTodoId = 0
+const addTodo = (text) => {
+  return{
+    type: 'ADD_TODO',
+    text,
+    id: nextTodoId++
+  }
+}
+const setVisibilityFilter = (filter) => {
+  return{
+    type: 'SET_VISIBILITY_FILTER',
+    filter
+  }
+}
+const toggleTodo = (id) => {
+  return{
+    type: 'TOGGLE_TODO',
+    id
+  }
+}
+
 const Link = ({active, children, onClick}) => {
   if(active) {
     return(
@@ -33,10 +52,7 @@ const mapStateToLinkProps = (state, ownProps) => {
 const mapDipatchToLinkProps = (dispatch, ownProps) => {
   return{
     onClick: () => {
-      dispatch({
-        type: 'SET_VISIBILITY_FILTER',
-        filter: ownProps.filter
-      })
+      dispatch(setVisibilityFilter(ownProps.filter))
     }
   }
 }
@@ -128,11 +144,7 @@ let AddTodo = ({dispatch}) => {
       }} />
       <button
         onClick={() => {
-          dispatch({
-            type: 'ADD_TODO',
-            text: input.value,
-            id: nextTodoId++
-          })
+          dispatch(addTodo(input.value))
           input.value = ''
         }}
       >
@@ -185,10 +197,7 @@ const mapStateToTodoListProps = (state) => {
 const mapDipatchToTodoListProps = (dispatch) => {
   return {
     onTodoClick: id => {
-      dispatch({
-        type: 'TOGGLE_TODO',
-        id
-      })
+      dispatch(toggleTodo(id))
     }
   }
 }
@@ -202,7 +211,6 @@ const VisibleTodoList = connect(
   mapDipatchToTodoListProps
 )(TodoList)
 
-let nextTodoId = 0
 const TodoApp = () => (
   <div>
     <AddTodo />
