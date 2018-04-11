@@ -1,8 +1,8 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js add todo.js
+  /usr/local/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js add redux
 
 PATH: 
-  /Users/uedatomohiro/Desktop/webstudy/react/redux/redux-todo-list/node_modules/.bin:/Users/uedatomohiro/.config/yarn/link/node_modules/.bin:/Users/uedatomohiro/Desktop/webstudy/react/redux/redux-todo-list/node_modules/.bin:/Users/uedatomohiro/.config/yarn/link/node_modules/.bin:/usr/local/libexec/lib/node_modules/npm/bin/node-gyp-bin:/usr/local/lib/node_modules/npm/bin/node-gyp-bin:/usr/local/bin/node_modules/npm/bin/node-gyp-bin:/Users/uedatomohiro/.rbenv/bin:/Users/uedatomohiro/.pyenv/shims:/Users/uedatomohiro/.rbenv/bin:/Users/uedatomohiro/.rbenv/bin:/Users/uedatomohiro/.rbenv/shims:/Users/uedatomohiro/.rbenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+  /Users/uedatomohiro/.rbenv/bin:/Users/uedatomohiro/.pyenv/shims:/Users/uedatomohiro/.rbenv/bin:/Users/uedatomohiro/.rbenv/bin:/Users/uedatomohiro/.rbenv/shims:/Users/uedatomohiro/.rbenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 
 Yarn version: 
   1.5.1
