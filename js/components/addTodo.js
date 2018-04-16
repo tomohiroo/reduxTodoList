@@ -1,17 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {addTodo} from '../actions'
 
-let nextTodoId = 0
-//action creater
-const addTodo = (text) => {
-  return{
-    type: 'ADD_TODO',
-    text,
-    id: nextTodoId++
-  }
-}
-
-let AddTodo = ({onClick}) => {
+const AddTodo = ({onClick}) => {
   let input
   return(
     <div>
@@ -36,14 +27,6 @@ const mapDispatchToAddTodo = (dispatch) => {
     }
   }
 }
-AddTodo = connect(
+export default connect(
   null, mapDispatchToAddTodo
 )(AddTodo)
-// AddTodo = connect()(AddTodo)
-// 以下と同じ
-// AddTodo = connect(
-//     null,
-//     dispatch => dispatch
-//   )
-// )(AddTodo)
-export default AddTodo
