@@ -2,10 +2,10 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import {createStore} from 'redux'
 import {Provider} from 'react-redux'
-import AddTodo from './addTodo'
-import VisibleTodoList from './visibleTodoList'
-import Footer from './footer'
-import todoApp from './reducer'
+import AddTodo from './component/addTodo'
+import VisibleTodoList from './component/visibleTodoList'
+import Footer from './component/footer'
+import todoApp from './component/reducer'
 
 const TodoApp = () => (
   <div>
