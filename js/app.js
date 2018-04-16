@@ -5,7 +5,7 @@ import {Provider} from 'react-redux'
 import AddTodo from './component/addTodo'
 import VisibleTodoList from './component/visibleTodoList'
 import Footer from './component/footer'
-import todoApp from './component/reducer'
+import todoApp from './reducers'
 
 const TodoApp = () => (
   <div>
