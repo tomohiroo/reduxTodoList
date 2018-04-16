@@ -39,6 +39,7 @@ const mapDispatchToAddTodo = (dispatch) => {
 AddTodo = connect(
   null, mapDispatchToAddTodo
 )(AddTodo)
+// AddTodo = connect()(AddTodo)
 // 以下と同じ
 // AddTodo = connect(
 //     null,
